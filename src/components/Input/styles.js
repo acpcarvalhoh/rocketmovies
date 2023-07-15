@@ -6,13 +6,13 @@ export const Container = styled.div`
     align-items: center;
     width: 100%;
     border-radius: 1rem;
+    margin-bottom: 8px;
     
-
-
+    
     >input{
         width: 100%;
         border: none;
-        padding: 1.9rem 2.4rem;
+        padding: 1.9rem 1rem;
         border-radius: 1rem;
         background: transparent;
         color: ${({theme}) => theme.COLORS.TEXT};
