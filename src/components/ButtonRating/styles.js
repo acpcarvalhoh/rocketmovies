@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 
-export const Container = styled.button`
-  background: none;
-  border: none;
-
-
+export const Container = styled.span`
   > svg {
     color: ${({ theme}) => theme.COLORS.ROSA};
   }

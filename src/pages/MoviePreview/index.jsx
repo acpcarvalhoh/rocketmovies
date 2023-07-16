@@ -8,6 +8,7 @@ import { Header } from "../../components/Header"
 import { Rating } from "../../components/Rating"
 import { Tag } from "../../components/Tag";
 import { ButttonText } from "../../components/ButtonText";
+import { Link } from "react-router-dom";
 
 export function MoviePreview(){
     return(
@@ -16,7 +17,11 @@ export function MoviePreview(){
             <main>
                 
                 <Content>
-                    <ButttonText title="Voltar" icon={FiArrowLeft}/>
+                    <Link to="/">
+                        <FiArrowLeft/>
+                        Voltar
+                    </Link>
+                    
                     <div className="header">
                         <h1>Interestellar</h1>
                         <Rating/>

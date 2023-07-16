@@ -2,6 +2,8 @@ import { styled } from "styled-components"
 
 import BacgroundImg from "../../assets/background.png"
 
+import { Link } from "react-router-dom"
+
 export const Container = styled.div`
     height: 100vh;
     display: flex;
@@ -43,9 +45,18 @@ export const Form = styled.div`
         margin-bottom: 3.8rem;
     }
 
-    button:first-of-type{
+    button{
         margin: 2.4rem 0 4.2rem;
     }
+
+`
+
+export const Createaccount = styled(Link)`
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 8px;
+    color: ${({ theme }) => theme.COLORS.ROSA};
 
 `
 

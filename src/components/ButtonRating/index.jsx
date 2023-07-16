@@ -5,9 +5,9 @@ import { FaStar } from "react-icons/fa"
 import { Container } from "./styles";
 
 
-export function ButtonRating({isActive}){
+export function ButtonRating({isActive = false}){
     return(
-        <Container isActive={isActive}>
+        <Container $isactive={isActive.toString()}>
             {isActive ? <FaStar/> : <FiStar/>}
             
         </Container>

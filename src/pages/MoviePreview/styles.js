@@ -19,6 +19,13 @@ export const Container = styled.div`
 export const Content = styled.div`
    margin: 4rem auto;
    max-width: 1120px;
+
+   >a{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: ${({ theme }) => theme.COLORS.ROSA};
+    }
    
 
     .header{
@@ -71,6 +78,10 @@ export const Content = styled.div`
           color: ${({ theme}) => theme.COLORS.GREY_100};
           margin-top: 2rem;
         
+        }
+
+        span{
+            background: ${({theme}) => theme.COLORS.BACKGROUND_900};
         }
     }
 

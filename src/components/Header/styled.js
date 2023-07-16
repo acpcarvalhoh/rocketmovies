@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 
@@ -30,7 +31,7 @@ export const Container = styled.header`
 
 `
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +49,7 @@ export const Profile = styled.div`
 
         strong{
             font-size: 1.4rem;
+            color: ${({theme}) => theme.COLORS.TEXT};
         }
 
         button{

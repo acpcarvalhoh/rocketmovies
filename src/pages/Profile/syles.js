@@ -15,6 +15,13 @@ export const Container = styled.div`
         padding: 0 14.4rem;
         display: flex;
         align-items: center;
+
+        a{
+            display: flex; 
+            align-items: center;
+            gap: 8px;
+            color: ${({ theme }) => theme.COLORS.ROSA};
+        }
     }
 
     >main{

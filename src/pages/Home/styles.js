@@ -1,5 +1,7 @@
 import { styled } from "styled-components"
 
+import { Link } from "react-router-dom"
+
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
@@ -30,10 +32,6 @@ export const Content = styled.div`
         justify-content: space-between;
         margin-bottom: 4rem;
 
-        button{
-            max-width: 207px;
-        }
-
         h1{
             font-size: 3.2rem;
             font-style: normal;
@@ -42,15 +40,20 @@ export const Content = styled.div`
         }
     }
 
-    >section{
-        p{
-          text-align: justify;
-          line-height: 25px;
-          color: ${({ theme}) => theme.COLORS.GREY_100};
-          margin-bottom: 2rem;
-        }
-    }
 
+`
+
+export const Links = styled(Link)`
+    width: 100%;
+    padding: 1rem;
+    background: ${({ theme }) => theme.COLORS.ROSA};
+    color: ${({ theme }) => theme.COLORS.BACKGROUND};
+    border-radius: 8px;
+    max-width: 207px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;  
 
 `
 

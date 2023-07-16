@@ -13,6 +13,13 @@ export const Container = styled.div`
         grid-area: main;
         padding: 4rem 12.3rem 9rem;
         overflow-y: auto;
+
+        a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: ${({ theme }) => theme.COLORS.ROSA};
+        }
     }
 
 `
@@ -48,6 +55,8 @@ export const Form = styled.form`
             display: flex;
             flex-wrap: wrap;
             gap: 2.4rem;
+
+           
         }
     }
 

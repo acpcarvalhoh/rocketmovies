@@ -1,10 +1,9 @@
-import { Container, Form, Background} from "./styles";
+import { Container, Form, BackToLogin, Background} from "./styles";
 
 import {FiArrowLeft, FiLock, FiMail, FiUser } from "react-icons/fi"
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
-import { ButttonText } from "../../components/ButtonText"
 
 export  function SignUp(){
     return(
@@ -18,7 +17,11 @@ export  function SignUp(){
                 <Input type="mail" placeholder="E-mail" icon={FiMail}/>
                 <Input type="password" placeholder="Senha" icon={FiLock}/>
                 <Button title="Cadastrar"/>
-                <ButttonText icon={FiArrowLeft} title="Voltar para o login"/>
+
+                <BackToLogin to="/">
+                  <FiArrowLeft/>
+                  Voltar para o login
+                </BackToLogin>
             </Form>
 
             <Background/>

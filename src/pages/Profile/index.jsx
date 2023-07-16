@@ -2,15 +2,18 @@ import { FiUser, FiMail, FiLock, FiArrowLeft, FiCamera } from "react-icons/fi";
 
 import { Container, Form, Avatar } from "./syles";
 
-import { ButttonText } from "../../components/ButtonText";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { Link } from "react-router-dom";
 
 export function Profile(){
     return(
         <Container>
             <header>
-                <ButttonText icon={FiArrowLeft} title="Voltar"/>
+                <Link to="/">
+                    <FiArrowLeft/>
+                    Voltar
+                </Link>
             </header>
 
             <main>
@@ -28,8 +31,8 @@ export function Profile(){
                             />
                         </label>
                     </Avatar>
-                    <Input type="text" icon={FiUser} value="Adão Carvalho" />
-                    <Input type="mail" icon={FiMail} value="acp@gmail.com"/>
+                    <Input type="text" icon={FiUser} placeholder="Nome"/>
+                    <Input type="mail" icon={FiMail} placeholder="E-mail"/>
                     <Input type="password" icon={FiLock} placeholder="Senha atual"/>
                     <Input type="password" icon={FiLock} placeholder="Nova senha"/>
                     <Button title="Salvar"/>

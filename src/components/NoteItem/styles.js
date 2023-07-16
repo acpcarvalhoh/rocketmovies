@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     
-    background: ${({ theme, isNew }) => isNew? `transparent` : theme.COLORS.BACKGROUND_700};
-    border: ${({ theme, isNew}) => isNew? `1px dashed ${theme.COLORS.TEXT}` : "none"};
+    background: ${({ theme, $isnew}) => $isnew? `transparent` : theme.COLORS.BACKGROUND_700};
+    border: ${({ theme, $isnew}) => $isnew? `1px dashed ${theme.COLORS.TEXT}` : "none"};
     border-radius: 1rem;
     display: flex;
     justify-content: center;
