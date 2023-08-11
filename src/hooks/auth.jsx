@@ -4,7 +4,7 @@ import { api } from "../sever";
 const AuthContext = createContext({})
 
 function AuthProvider({children}){
-    const [data, setData ] = useState({})
+    const [data, setData] = useState({})
 
     async function signIn({email, password}){
         if(!email || !password){
@@ -14,13 +14,13 @@ function AuthProvider({children}){
         try{
             const response = await api.post("/sessions", {email, password})
             
-            const {user, token} = response.data;
+            const { user, token } = response.data;
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`
 
             localStorage.setItem("@rocketmovies:user", JSON.stringify(user));
             localStorage.setItem("@rocketmovies:token", token);
 
-            setData({user, token});
+            setData({ user, token });
 
         } catch(error){
             if(error.response){
@@ -30,6 +30,14 @@ function AuthProvider({children}){
                 alert("Não foi possivel entrar")
             };
         };
+    };
+
+
+    function signOut(){
+        localStorage.removeItem("@@rocketmovies:user")
+        localStorage.removeItem("@rocketmovies:token")
+
+        setData({});
     };
 
     useEffect(() => {
@@ -51,6 +59,7 @@ function AuthProvider({children}){
     return(
         <AuthContext.Provider value={{
             signIn,
+            signOut,
             user: data.user
         }}>
             {children}

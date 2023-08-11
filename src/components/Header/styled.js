@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-
 
 export const Container = styled.header`
     grid-area: header;
@@ -29,36 +27,57 @@ export const Container = styled.header`
     }
 
 
+    @media (max-width: 1100px) {
+        padding: 0 20px;
+    }
+
+
 `
 
-export const Profile = styled(Link)`
+export const Profile = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 9px;
-
-    >img{
-        width: 5.6rem;
-        height: 5.6rem;
-        border-radius: 50%
-    }
-
-    >div{
+    position: relative;
+    
+    >a{
         display : flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        img{
+            width: 5.6rem;
+            height: 5.6rem;
+            border-radius: 50%;
+        }
 
         strong{
             font-size: 1.4rem;
             color: ${({theme}) => theme.COLORS.TEXT};
+            
         }
 
-        button{
-            text-align: right;
-            font-size: 1.4rem;
-            background: none;
-            color: ${({theme}) => theme.COLORS.GREY_100};
-            border: none;
+
+        @media (max-width: 1000px) {
+            flex-direction: column-reverse;
+            align-items: right;
+            justify-content: right;
+            width: 150px;
+
         }
+    }
+
+
+    >button{
+        font-size: 1.4rem;
+        background: none;
+        color: ${({theme}) => theme.COLORS.GREY_100};
+        border: none;
+        position: absolute;
+        bottom: 0;
+        
     }
 
 `
