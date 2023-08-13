@@ -17,7 +17,6 @@ export  function SignIn(){
     function handleSignIn(){
         signIn({email, password});
 
-        console.log(email, password)
     };
 
 
