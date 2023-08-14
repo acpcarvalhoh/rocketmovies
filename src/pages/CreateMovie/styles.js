@@ -36,15 +36,17 @@ export const Form = styled.form`
         margin-bottom: 4rem;
     }
 
-    >section{
+    >fieldset{
         margin-top: 4rem;
+        border: none;
 
-        h1{
+        legend{
             color: ${({theme}) => theme.COLORS.GREY_100};
             margin-bottom: 2.4rem;
             font-size: 2rem;
             font-weight: 400;
             line-height: normal;
+            
         }
 
         .Tags{
