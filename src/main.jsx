@@ -7,13 +7,16 @@ import  theme  from "./styles/theme";
 import { AuthProvider } from './hooks/auth';
 
 import { Routes } from "./routes"
+import { SearchProvider } from './hooks/search';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <AuthProvider>
-        <Routes />
+        <SearchProvider>
+          <Routes />
+        </SearchProvider>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>

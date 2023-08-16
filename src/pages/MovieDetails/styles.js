@@ -34,6 +34,7 @@ export const Content = styled.div`
         margin: 2.4rem 0;
         gap: 1.9rem;
         align-items: center;
+        
 
         h1{
             font-size: 3.6rem;
@@ -42,9 +43,13 @@ export const Content = styled.div`
             line-height: normal;
         }
 
+        span{
+            margin-right: -9px;
+        }
+
     }
 
-    .description{
+    .note_description{
         display: flex;
         align-items: center;
         gap: 8px;

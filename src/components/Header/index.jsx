@@ -5,11 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { api } from "../../sever";
 import avatarPlaceholder  from "../../assets/avatar_placeholder.svg"
+import { useSearch } from "../../hooks/search";
 
 export function Header(){
-
     const navigate = useNavigate();
+
     const { signOut, user } = useAuth();
+    const { SetSearch } = useSearch();
 
     const avatarUrl = user.avatar? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
@@ -22,9 +24,11 @@ export function Header(){
     return(
         <Container>
             <h1>Rocket Movies</h1>
-            <Input placeholder="Pesquisar pelo título">
-                
-            </Input>
+
+            <Input 
+                placeholder="Pesquisar pelo título"
+                onChange={e => SetSearch(e.target.value)}
+            /> 
             
             <Profile>
                 <Link to="/profile">

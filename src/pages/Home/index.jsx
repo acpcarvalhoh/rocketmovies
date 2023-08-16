@@ -4,30 +4,36 @@ import { FiPlus } from "react-icons/fi"
 
 import { Header } from "../../components/Header"
 import { Section } from "../../components/Section";
-import { Rating } from "../../components/Rating"
 import { Note} from "../../components/Note";
 import { useEffect, useState } from "react";
 import { api } from "../../sever";
+import { useSearch } from "../../hooks/search";
+import { useNavigate } from "react-router-dom";
 
 export function Home(){
     const [notes, SetNotes] = useState([]);
     const [tags, setTags] = useState([]);
-    const [search, setSearch] = useState("");
+    const { search } = useSearch();
+    const navigate = useNavigate();
+
+    function handleMovieDetails(id){
+        navigate(`/moviedetails/${id}`);
+
+    };
 
     useEffect(() => {
         async function fetchNotes(){
             const response = await api.get(`/movie_notes?title=${search}&tags=${tags}`)
 
-            console.log(response.data)
             SetNotes(response.data);
 
-
-            res
+            
 
         };
 
         fetchNotes();
-    }, [])
+
+    }, [search]);
 
     return(
         <Container>
@@ -45,11 +51,10 @@ export function Home(){
                     
                     {
                       notes && notes.map((note) => (
-                        <Section>
+                        <Section key={String(note.id)}>
                             <Note 
-                                key={String(index)}
                                 data={note}
-                
+                                onClick={() => handleMovieDetails(note.id)}
                             />
                         </Section>
                       ))
