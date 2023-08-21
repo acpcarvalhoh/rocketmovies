@@ -32,10 +32,27 @@ export const Form = styled.form`
     margin: 2.4rem auto;
 
     >header{
+        width: 100%;
         display: flex;
         justify-content: space-between;
-        gap: 5.6rem;
-        margin-bottom: 4rem;
+        gap: 7.6rem;
+        margin-bottom: 4rem; 
+
+        div{
+           width: 100%
+
+        }
+    }
+
+    span{
+        color: red;
+        font-size: 1.4rem;
+        font-family: "roboto", sans-serif;
+        margin-top: 1rem;   
+    }
+
+    textarea{
+        width: 100%;
     }
 
     >fieldset{
@@ -60,7 +77,6 @@ export const Form = styled.form`
             flex-wrap: wrap;
             gap: 2.4rem;
 
-           
         }
     }
 

@@ -18,7 +18,7 @@ export  function SignIn(){
 
     });
 
-    console.log(errors)
+   
     function handleSignIn(data){
         signIn(data);
     

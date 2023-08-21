@@ -1,9 +1,10 @@
 import { Container } from "./styles";
+import { forwardRef } from "react";
 
-export function TextArea({value, ...rest}){
-    return(
-        <Container {...rest} value={value}>
+export const TextArea = forwardRef(({ value, ...rest }, ref) => {
+    return (
+      <Container {...rest} ref={ref} value={value}>
         
-        </Container>
+      </Container>
     );
-};
+}); 

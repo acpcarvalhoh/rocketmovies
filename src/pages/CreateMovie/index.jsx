@@ -29,6 +29,7 @@ export function CreateMovie(){
         
     });
 
+
     const navigate = useNavigate();
 
     function handleAddTags(){
@@ -60,15 +61,12 @@ export function CreateMovie(){
         setNewTags(""); 
     };
 
-    async function hadleRegisterNotes(){
-        const emptyFields = !title.trim() || !rating.trim() || !description.trim() || !tags.length;
+    async function hadleRegisterNotes(data){
 
-        if(emptyFields){
-            return alert("Preencha todos os campos para cadastar o filme!!");
-        };
-
+        data.tags = tags;
+        
         try{
-            const response = await api.post("/movie_notes", { title, rating, description, tags })
+            const response = await api.post("/movie_notes", data)
 
             alert(response.data.message);
             navigate(-1);
@@ -80,8 +78,9 @@ export function CreateMovie(){
             }else{
                 alert("Erro ao cadastar nota!!!");
             };
-        };
+        }; 
     };
+    
 
     function handleBack(){
         navigate(-1);
@@ -97,29 +96,57 @@ export function CreateMovie(){
                     Voltar
                 </button>
                     
-                <Form>
+                <Form onSubmit={handleSubmit(hadleRegisterNotes)}>
+
                     <header>
-                        <Input 
-                            type="text"
-                            value={title}
-                            placeholder="Título"
-                            onChange={e => setTitle(e.target.value)}
-                        />
-                        <Input 
-                            type="text"
-                            value={rating}
-                            placeholder="Sua nota (de 0 a 5)"
-                            onChange={e => setRating(e.target.value)}
+                        <div>
+                            <Input 
+                                type="text"
+                                value={title}
+                                placeholder="Título"
+                                {...register("title")}
 
-                        />
+                                onChange={(e) => {
+                                    register("title").onChange(e); 
+                                    setTitle(e.target.value); 
+                                }}
+                            />
+
+                            {errors.title && <span>{errors.title}</span>}
+                        </div>
+
+                        <div>
+                            <Input 
+                                type="text"
+                                value={rating}
+                                placeholder="Sua nota (de 0 a 5)"
+                                {...register("rating")}
+
+                                onChange={(e) => {
+                                    register("rating").onChange(e); 
+                                    setRating(e.target.value); 
+                                }}
+                            />
+
+                            {errors.rating && <span>{errors.rating}</span>}
+                        </div>                        
                     </header>
+                    <div>
+                        <TextArea
+                            value={description} 
+                            placeholder="Observações"
+                            {...register("description")}
 
-                    <TextArea
-                        value={description} 
-                        placeholder="Observações"
-                        onChange={e => setDescription(e.target.value)}
-                    
-                    />
+
+                            onChange={(e) => {
+                                register("description").onChange(e); 
+                                setDescription(e.target.value); 
+                            }}
+                        />
+                        {errors.description && <span>{errors.description}</span>}
+                    </div>
+                   
+
                     <fieldset>
                         <legend>Marcadores</legend>
                         <div className="Tags">
@@ -151,7 +178,7 @@ export function CreateMovie(){
 
                         <Button 
                             title="Salvar alterações"
-                            onClick={hadleRegisterNotes}
+                            type="submit"
                         />
                     </footer>
                 </Form>
