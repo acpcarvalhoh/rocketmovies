@@ -3,44 +3,54 @@ import {FiArrowLeft, FiLock, FiMail, FiUser } from "react-icons/fi"
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
-import { useState } from "react";
+
 import { api } from "../../sever";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { createUserFormSchema } from "../../validators/userValidator";
+import { validateAndFormatErrors } from "../../validators/validateAndFormatErrors";
 
 export  function SignUp(){
-    const [name, setName ] = useState("")
-    const [email, setEmail ] = useState("")
-    const [password, setPassword ] = useState("")
+    const [apiError, setApiError] = useState(null);
+    
+
+    const { register, handleSubmit, formState: { errors }} = useForm({
+        resolver: async (data) => {
+            return validateAndFormatErrors(createUserFormSchema, data);
+        },
+    });
+
+    
 
     const navigate = useNavigate();
 
-    async function handleSignUp(){
-        if(!name || !email || !password){
-            return alert("Preençha todos os campos do formulário!!")
-        };
-
-        try{
-            await api.post("/users", {name, email, password})
+    async function handleSignUp(data){ 
+       try{
+            await api.post("/users", data)
 
             alert("Usuário cadastrado com sucesso!!!")
             navigate(-1)
 
+            
         } catch(error){
             if(error.response){
-                alert(error.response.data.message)
+            
+            setApiError(error.response.data.message);
 
             }else{
-                alert("Não foi possivel cadastrar!!!")
+                setApiError("Não foi possível cadastrar!!!");
             }
-        };
+        }; 
 
 
     };
 
-
+   
     return(
         <Container>
-            <Form>
+            <Form onSubmit={handleSubmit(handleSignUp)} noValidate>
+
                 <h1>RocketMovies</h1>
                 <p>Aplicação para acompanhar tudo que assistir.</p>
 
@@ -49,27 +59,37 @@ export  function SignUp(){
                     type="text" 
                     placeholder="Nome" 
                     icon={FiUser}
-                    onChange={e => setName(e.target.value)}
-                
+                    {...register("name")}
+                    
                 />
+                {errors.name && <span>{errors.name}</span>}
 
+                
                 <Input 
-                    type="mail" 
+                    type="email" 
                     placeholder="E-mail" 
                     icon={FiMail}
-                    onChange={e => setEmail(e.target.value)}
+                    {...register("email")}
+                    onChange={(e) => {
+                        register("email").onChange(e); 
+                        setApiError(null); 
+                    }}
+                   
                 />
-
+                {errors.email && <span>{errors.email}</span>}
+                {apiError && <span>{apiError}</span>}
+               
                 <Input 
                     type="password" 
                     placeholder="Senha" 
                     icon={FiLock}
-                    onChange={e => setPassword(e.target.value)}
+                    {...register("password")}
                 />
+                {errors.password && <span>{errors.password}</span>}
 
                 <Button 
                     title="Cadastrar"
-                    onClick={handleSignUp}
+                    type="submit"
                 />
 
                 <BackToLogin to="/">

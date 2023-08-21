@@ -14,11 +14,13 @@ export const Container = styled.div`
         padding: 4rem 12.3rem 9rem;
         overflow-y: auto;
 
-        a{
+        >button{
             display: flex;
             align-items: center;
             gap: 8px;
             color: ${({ theme }) => theme.COLORS.ROSA};
+            border: none;
+            background: none;
         }
     }
 

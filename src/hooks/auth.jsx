@@ -6,13 +6,9 @@ const AuthContext = createContext({})
 function AuthProvider({children}){
     const [data, setData] = useState({})
 
-    async function signIn({email, password}){
-        if(!email || !password){
-            return alert("Prençha os campos do formulário!!")
-        }
-
+    async function signIn(data){
         try{
-            const response = await api.post("/sessions", {email, password})
+            const response = await api.post("/sessions", data)
             
             const { user, token } = response.data;
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`

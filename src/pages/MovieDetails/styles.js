@@ -20,11 +20,13 @@ export const Content = styled.div`
    margin: 4rem auto;
    max-width: 1120px;
 
-   >a{
+   >button{
         display: flex;
         align-items: center;
         gap: 8px;
         color: ${({ theme }) => theme.COLORS.ROSA};
+        border: none;
+        background: none;
     }
    
 

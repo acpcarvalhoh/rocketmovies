@@ -7,9 +7,13 @@ import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
 import { NoteItem } from "../../components/NoteItem";
 import { Button } from "../../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { api } from "../../sever";
+
+import { useForm } from "react-hook-form";
+import { validateAndFormatErrors } from "../../validators/validateAndFormatErrors";
+import { createNoteFormSchema } from "../../validators/noteValidator";
 
 export function CreateMovie(){
     const [title, setTitle] = useState("")
@@ -17,6 +21,13 @@ export function CreateMovie(){
     const [description, setDescription] = useState("")
     const [tags, setTags] = useState([]);
     const [newTag, setNewTags] = useState("");
+
+    const { register, handleSubmit, formState: {errors} } = useForm({
+        resolver: async (data) => {
+            return validateAndFormatErrors(createNoteFormSchema, data)
+        }
+        
+    });
 
     const navigate = useNavigate();
 
@@ -47,7 +58,6 @@ export function CreateMovie(){
         setDescription("");
         setTags([]);
         setNewTags(""); 
-
     };
 
     async function hadleRegisterNotes(){
@@ -72,17 +82,21 @@ export function CreateMovie(){
             };
         };
     };
+
+    function handleBack(){
+        navigate(-1);
+    };
  
     return(
         <Container>
             <Header/>
 
             <main>
-                <Link to="/">
+                <button onClick={handleBack}>
                     <FiArrowLeft/>
                     Voltar
-                </Link>
-                   
+                </button>
+                    
                 <Form>
                     <header>
                         <Input 
@@ -92,9 +106,11 @@ export function CreateMovie(){
                             onChange={e => setTitle(e.target.value)}
                         />
                         <Input 
+                            type="text"
                             value={rating}
                             placeholder="Sua nota (de 0 a 5)"
                             onChange={e => setRating(e.target.value)}
+
                         />
                     </header>
 

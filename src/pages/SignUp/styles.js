@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 `
 
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +24,14 @@ export const Form = styled.div`
         line-height: normal;
         color: ${({ theme }) => theme.COLORS.ROSA};
        
+    }
+
+    >span{
+        color: red;
+        font-size: 1.4rem;
+        margin-top: -.8rem;
+        margin-bottom: 1rem;
+        font-family: "roboto", sans-serif;
     }
 
     >p{

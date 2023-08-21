@@ -57,13 +57,13 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.COLORS.ROSA};
+    background: #555;
     border-radius: 6px;
     
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: ${({ theme }) => theme.COLORS.ROSA}; 
 
   }
 `

@@ -56,6 +56,10 @@ export const Profile = styled.nav`
         strong{
             font-size: 1.4rem;
             color: ${({theme}) => theme.COLORS.TEXT};
+
+            @media (max-width: 1000px) {
+            margin-bottom: 2rem;
+        }
             
         }
 
@@ -77,6 +81,12 @@ export const Profile = styled.nav`
         border: none;
         position: absolute;
         bottom: 0;
+        
+
+        @media (max-width: 1000px) {
+          right: 50%;
+          bottom: 0;
+        }
         
     }
 

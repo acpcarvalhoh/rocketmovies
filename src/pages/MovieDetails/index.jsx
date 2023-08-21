@@ -4,7 +4,7 @@ import { FiArrowLeft, FiClock } from "react-icons/fi"
 import { Header } from "../../components/Header"
 import { Tag } from "../../components/Tag";
 import { Rating } from "../../components/Rating";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import { api } from "../../sever";
@@ -13,6 +13,7 @@ export function MovieDetails(){
     const { user } = useAuth();
     const { id } = useParams();
     const [data, setData] = useState({});
+    const navigate = useNavigate();
 
     const createdAt = new Date(data.created_at)
     const formattedDate = createdAt.toLocaleDateString(); 
@@ -38,6 +39,10 @@ export function MovieDetails(){
         return stars; 
     };
 
+    function handleBack(){
+        navigate(-1);
+    };
+
     
     useEffect(() => {
         async function fetchMovieDetails(){
@@ -58,10 +63,10 @@ export function MovieDetails(){
             <main>
                 
                 <Content>
-                    <Link to="/">
+                    <button onClick={handleBack}>
                         <FiArrowLeft/>
                         Voltar
-                    </Link>
+                    </button>
                     
                     <div className="header">
                         <h1>{data.title}</h1>

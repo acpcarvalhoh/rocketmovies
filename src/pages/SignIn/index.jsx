@@ -1,28 +1,33 @@
 import { Container, Form, Createaccount, Background} from "./styles";
-
 import {FiLock, FiMail } from "react-icons/fi"
 
+import { createSignInSchema } from "../../validators/userSignInValidator";
+import { validateAndFormatErrors } from "../../validators/validateAndFormatErrors";
+import { useForm } from "react-hook-form";
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { useAuth } from "../../hooks/auth";
-import { useState } from "react";
-
 
 export  function SignIn(){
     const { signIn } = useAuth();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { register, handleSubmit, formState: { errors }} = useForm({
+        resolver: async (data) => {
+            return validateAndFormatErrors(createSignInSchema, data);
+        },
 
-    function handleSignIn(){
-        signIn({email, password});
+    });
 
+    console.log(errors)
+    function handleSignIn(data){
+        signIn(data);
+    
     };
 
 
     return(
         <Container>
-            <Form>
+            <Form onSubmit={handleSubmit(handleSignIn)}>
                 <h1>RocketMovies</h1>
                 <p>Aplicação para acompanhar tudo que assistir.</p>
 
@@ -31,17 +36,19 @@ export  function SignIn(){
                     type="mail" 
                     placeholder="E-mail" 
                     icon={FiMail}
-                    onChange={e => setEmail(e.target.value)}
+                    {...register("email")}
                 />
+                {errors.email && <span>{errors.email}</span>}
 
                 <Input 
                     type="password" 
                     placeholder="Senha" 
                     icon={FiLock}
-                    onChange={e => setPassword(e.target.value)}
+                    {...register("password")}
                 />
+                {errors.password && <span>{errors.password}</span>}
 
-                <Button title="Entrar" onClick={handleSignIn}/>
+                <Button title="Entrar" type="submit"/>
                 
                 <Createaccount to="/register">
                    Criar conta
