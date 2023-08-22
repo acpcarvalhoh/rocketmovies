@@ -15,6 +15,10 @@ import { useForm } from "react-hook-form";
 import { validateAndFormatErrors } from "../../validators/validateAndFormatErrors";
 import { createNoteFormSchema } from "../../validators/noteValidator";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Notify } from "../../validators/tostify";
+
 export function CreateMovie(){
     const [title, setTitle] = useState("")
     const [rating, setRating] = useState("")
@@ -68,15 +72,16 @@ export function CreateMovie(){
         try{
             const response = await api.post("/movie_notes", data)
 
-            alert(response.data.message);
+            Notify(`Sucesso: ${response.data.message}`);
+
             navigate(-1);
 
         } catch(error){
             if(error.response){
-                alert(error.response.data.message);
+                Notify(`Erro: ${error.response.data.message}`);
 
             }else{
-                alert("Erro ao cadastar nota!!!");
+                Notify("Erro: Erro ao cadastar nota!!!");
             };
         }; 
     };
@@ -183,6 +188,8 @@ export function CreateMovie(){
                     </footer>
                 </Form>
             </main>
+
+            <ToastContainer/>
         </Container>
     );
 };

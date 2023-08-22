@@ -8,6 +8,10 @@ import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { useAuth } from "../../hooks/auth";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export  function SignIn(){
     const { signIn } = useAuth();
 
@@ -48,7 +52,10 @@ export  function SignIn(){
                 />
                 {errors.password && <span>{errors.password}</span>}
 
-                <Button title="Entrar" type="submit"/>
+                <Button 
+                    title="Entrar" 
+                    type="submit"
+                />
                 
                 <Createaccount to="/register">
                    Criar conta
@@ -56,6 +63,8 @@ export  function SignIn(){
             </Form>
 
             <Background/>
+
+            <ToastContainer/>
         </Container>
     );
 };

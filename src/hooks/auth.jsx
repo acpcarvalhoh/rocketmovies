@@ -1,6 +1,8 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { api } from "../sever";
 
+import { Notify } from "../validators/tostify";
+
 const AuthContext = createContext({})
 
 function AuthProvider({children}){
@@ -20,10 +22,10 @@ function AuthProvider({children}){
 
         } catch(error){
             if(error.response){
-                alert(error.response.data.message)
+                Notify(`Erro: ${error.response.data.message}`);
 
             }else{
-                alert("Não foi possivel entrar")
+                Notify("Erro: Não foi possivel entrar")
             };
         };
     };

@@ -11,9 +11,13 @@ import { useState } from "react";
 import { createUserFormSchema } from "../../validators/userValidator";
 import { validateAndFormatErrors } from "../../validators/validateAndFormatErrors";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Notify } from "../../validators/tostify";
+
+
 export  function SignUp(){
     const [apiError, setApiError] = useState(null);
-    
 
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: async (data) => {
@@ -21,25 +25,26 @@ export  function SignUp(){
         },
     });
 
-    
-
     const navigate = useNavigate();
 
     async function handleSignUp(data){ 
+        
        try{
             await api.post("/users", data)
-
-            alert("Usuário cadastrado com sucesso!!!")
-            navigate(-1)
-
             
+            Notify("Sucesso: Usuário cadastrado com sucesso!");
+
+            setTimeout(() => {
+                navigate(-1);
+
+            }, 2000); 
+
         } catch(error){
             if(error.response){
+                Notify(`Erro: ${error.response.data.message}`);
             
-            setApiError(error.response.data.message);
-
             }else{
-                setApiError("Não foi possível cadastrar!!!");
+                Notify("Erro: Não foi possível cadastrar!!!");
             }
         }; 
 
@@ -99,6 +104,10 @@ export  function SignUp(){
             </Form>
 
             <Background/>
+
+            <ToastContainer />            
         </Container>
+
+            
     );
 };
