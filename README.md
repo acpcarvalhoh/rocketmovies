@@ -4,16 +4,15 @@ Bem-vindo ao repositório do RocketMovies! Esta aplicação é um sistema de ger
 
 ## Visão geral
 
-O RocketMovies é uma aplicação web construída com [Framework React] usando [Linguagem JavaScript]. Permite aos usuários explorar uma ampla variedade de filmes, visualizar detalhes, classificações e avaliações, bem como adicionar seus próprios filmes à coleção. A aplicação utiliza [API de Filmes] para obter dados atualizados sobre filmes.
+O RocketMovies é uma aplicação web construída com [Framework React] usando [Linguagem JavaScript]. Permite aos usuários explorar uma ampla variedade de filmes, visualizar detalhes, classificações e avaliações, bem como adicionar seus próprios filmes à coleção. A aplicação utiliza [API de Filmes https://github.com/acpcarvalhoh/API] para obter dados atualizados sobre filmes.
 
 ## Funcionalidades principais
 
-- Pesquisar filmes por título, gênero ou ator.
-- Visualizar detalhes dos filmes, como sinopse, elenco, classificação, etc.
+- Pesquisar filmes por título.
+- Visualizar detalhes dos filmes, como sinopse, classificação, etc.
 - Classificar e avaliar filmes.
 - Adicionar novos filmes à coleção.
-- Filtrar filmes por gênero.
-- Salvar filmes favoritos e lista de assistidos.
+
 
 ## Configuração
 
